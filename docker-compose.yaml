@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:15
+    container_name: notes_db
+    env_file:
+      - .env-non-dev
+    ports:
+      - 5432:5432
+  
+  notes:
+    image: notes_image
+    build: 
+      context: .
+    container_name: notes_app
+    env_file:
+      - .env-non-dev
+    depends_on:
+      - db
+    command: ["/notes/docker/app.sh"]
+    ports:
+      - 7777:8000

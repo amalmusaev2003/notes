@@ -1,10 +1,12 @@
 from pydantic import BaseModel, EmailStr, UUID4
 from datetime import datetime
 
+
 class SUserAuth(BaseModel):
     username: str
     email: EmailStr
     password: str
+
 
 class SUser(BaseModel):
     id: UUID4
@@ -14,5 +16,5 @@ class SUser(BaseModel):
     created_at: datetime
     updated_at: datetime
 
-    class Config():
+    class Config:
         from_attributes = True

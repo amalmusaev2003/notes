@@ -1,2 +1,5 @@
 .env
+.env-non-dev
 alembic.ini
+.venv
+requirements.txt

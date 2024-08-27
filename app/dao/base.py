@@ -1,4 +1,3 @@
-import uuid
 from fastapi import status
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, insert
@@ -23,7 +22,7 @@ class BaseDAO:
             "status_code": status.HTTP_201_CREATED,
             "detail": "created successfully",
         }
-    
+
     @classmethod
     async def find_one_or_none(cls, db: AsyncSession, **filter_by):
         query = select(cls.model).filter_by(**filter_by)

@@ -1,4 +1,3 @@
-
 import uuid
 from typing import Annotated
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -23,11 +22,11 @@ def get_token(request: Request):
     return token
 
 
-async def get_current_user(db: Annotated[AsyncSession, Depends(get_db)], token: str = Depends(get_token)):
+async def get_current_user(
+    db: Annotated[AsyncSession, Depends(get_db)], token: str = Depends(get_token)
+):
     try:
-        payload = jwt.decode(
-            token, settings.SECRET_KEY, settings.ALGORITHM
-        )
+        payload = jwt.decode(token, settings.SECRET_KEY, settings.ALGORITHM)
     except ExpiredSignatureError:
         raise TokenExpiredException
     except JWTError:
